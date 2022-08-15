@@ -17,7 +17,7 @@ class EnsureUserHasRole
     public function handle($request, Closure $next, $role)
     {
         if (!$request->user()->hasRole($role)) {
-            // return redirect('/');
+            // return redirect()->view;
         }
         return $next($request);
     }
