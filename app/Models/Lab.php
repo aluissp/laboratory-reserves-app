@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Lab extends Model
 {
     use HasFactory;
+
+    public function staffInCharge()
+    {
+        return $this->belongsTo(User::class, 'staff_in_charge');
+    }
+
+    public function reservation()
+    {
+        return $this->hasOne(Reservation::class);
+    }
 }

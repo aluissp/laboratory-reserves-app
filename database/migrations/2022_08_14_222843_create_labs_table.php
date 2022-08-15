@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('location');
             $table->text('description');
             $table->integer('capacity');
-            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(User::class,'staff_in_charge');
             $table->timestamps();
         });
     }

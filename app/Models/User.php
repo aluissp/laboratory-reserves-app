@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'surname',
         'email',
         'password',
     ];
@@ -41,4 +42,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function major()
+    {
+        return $this->belongsTo(Major::class);
+    }
+
+    public function lab()
+    {
+        return $this->hasOne(Lab::class, 'staff_in_charge');
+    }
+
+    public function users()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }
