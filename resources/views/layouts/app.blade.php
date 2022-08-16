@@ -23,7 +23,8 @@
 
 <body>
   <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm"> --}}
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
       <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
           {{ config('app.name', 'Laravel') }}
@@ -59,25 +60,109 @@
                 </li>
               @endif
             @else
+              {{-- Usuarios --}}
               <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle"
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                  href="#" role="button" aria-haspopup="true"
+                  aria-expanded="false">Usuarios</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item d-flex justify-content-between"
+                    href="#">
+                    Agregar usuario
+                    <i class="fa-solid fa-user-plus mt-1 ms-1"></i>
+
+                  </a>
+                  <a class="dropdown-item d-flex justify-content-between"
+                    href="#">
+                    Gestionar usuarios
+                    <i class="fa-solid fa-users-gear mt-1 ms-1"></i>
+                  </a>
+                </div>
+              </li>
+              {{-- Roles --}}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                  href="#" role="button" aria-haspopup="true"
+                  aria-expanded="false">Roles</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item d-flex justify-content-between"
+                    href="#">
+                    Asignar roles
+                    <i class="fa-solid fa-pen-ruler mt-1 ms-1"></i>
+                  </a>
+                  <a class="dropdown-item d-flex justify-content-between"
+                    href="#">
+                    Agregar roles
+                    <i class="fa-solid fa-ruler-horizontal mt-1 ms-1"></i>
+                  </a>
+                </div>
+              </li>
+              {{-- Reservas --}}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                  href="#" role="button" aria-haspopup="true"
+                  aria-expanded="false">Reservas</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item d-flex justify-content-between"
+                    href="#">
+                    Mostrar reservas
+                    <i class="fa-solid fa-calendar-days mt-1 ms-1"></i>
+                  </a>
+                  <a class="dropdown-item d-flex justify-content-between"
+                    href="#">
+                    Mis reservas
+                    <i class="fa-solid fa-calendar-day mt-1"></i>
+                  </a>
+                </div>
+              </li>
+              {{-- Laboratorios --}}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                  href="#" role="button" aria-haspopup="true"
+                  aria-expanded="false">Laboratorios</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item d-flex justify-content-between"
+                    href="#">
+                    Mostrar laboratorios
+                    <i class="fa-solid fa-chalkboard-user mt-1 ms-1"></i>
+                  </a>
+                  <a class="dropdown-item d-flex justify-content-between"
+                    href="#">
+                    Registrar laboratorio
+                    <i class="fa-solid fa-plus mt-1"></i>
+                  </a>
+                </div>
+              </li>
+              {{-- Perfil --}}
+              <li class="nav-item dropdown">
+
+                <a id="userDropdown" class="nav-link dropdown-toggle"
                   href="#" role="button" data-bs-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false" v-pre>
                   {{ Auth::user()->name }} {{ auth()->user()->surname }}
                 </a>
 
-                <div class="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{{ route('logout') }}"
+                <di v class="dropdown-menu dropdown-menu-end"
+                  aria-labelledby="userDropdown">
+
+                  <a class="dropdown-item d-flex justify-content-between"
+                    href="#">
+                    Perfil
+                    <i class="fa-solid fa-user mt-1 ms-1"></i>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item d-flex justify-content-between"
+                    href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     {{ __('Cerrar Sesión') }}
+                    <i class="fa-solid fa-right-from-bracket mt-1 ms-1"></i>
                   </a>
 
                   <form id="logout-form" action="{{ route('logout') }}"
                     method="POST" class="d-none">
                     @csrf
                   </form>
-                </div>
+                </di>
               </li>
             @endguest
           </ul>

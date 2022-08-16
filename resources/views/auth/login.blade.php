@@ -4,10 +4,10 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <div class="card">
-          <div class="card-header">{{ __('Iniciar Sesión') }}</div>
+        <div class="card border-primary">
+          <div class="card-header text-center">{{ __('Iniciar Sesión') }}</div>
 
-          <div class="card-body">
+          <div class="card-body shadow">
             <form method="POST" action="{{ route('login') }}">
               @csrf
 
@@ -17,7 +17,7 @@
 
                 <div class="col-md-6">
                   <input id="email" type="email"
-                    class="form-control @error('email') is-invalid @enderror"
+                    class="form-control @error('email') is-invalid @enderror form-control-user"
                     name="email" value="{{ old('email') }}" required
                     autocomplete="email" autofocus>
 
@@ -35,7 +35,7 @@
 
                 <div class="col-md-6">
                   <input id="password" type="password"
-                    class="form-control @error('password') is-invalid @enderror"
+                    class="form-control @error('password') is-invalid @enderror form-control-user"
                     name="password" required autocomplete="current-password">
 
                   @error('password')
@@ -48,7 +48,7 @@
 
               <div class="row mb-0">
                 <div class="col-md-8 offset-md-4">
-                  <button type="submit" class="btn btn-primary">
+                  <button type="submit" class="btn btn-primary btn-user">
                     {{ __('Iniciar Sesión') }}
                   </button>
                 </div>
