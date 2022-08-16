@@ -52,13 +52,6 @@
                     href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                 </li>
               @endif
-
-              @if (Route::has('register'))
-                <li class="nav-item">
-                  <a class="nav-link"
-                    href="{{ route('register') }}">{{ __('Registro') }}</a>
-                </li>
-              @endif
             @else
               {{-- Usuarios --}}
               <li class="nav-item dropdown">
@@ -67,7 +60,7 @@
                   aria-expanded="false">Usuarios</a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item d-flex justify-content-between"
-                    href="#">
+                    href="{{ route('register') }}">
                     Agregar usuario
                     <i class="fa-solid fa-user-plus mt-1 ms-1"></i>
 
@@ -82,7 +75,7 @@
               {{-- Roles --}}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-                  href="#" role="button" aria-haspopup="true"
+                  href="" role="button" aria-haspopup="true"
                   aria-expanded="false">Roles</a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item d-flex justify-content-between"
@@ -171,6 +164,10 @@
     </nav>
 
     <main class="py-4">
+      @if ($alert = session()->get('alert'))
+        <x-alert :type="$alert['type']" :message="$alert['message']" />
+      @endif
+      
       @yield('content')
     </main>
   </div>
