@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\MajorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController as Admin;
 use Illuminate\Support\Facades\Auth;
@@ -23,5 +24,6 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
   Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-  // Route::resource('users', Admin::class)->middleware("role|" + config('role.admin'));
+  $role = config('role.admin');
+  Route::resource('majors', MajorController::class)->except('create', 'show', 'edit')->middleware("role:{$role}");
 });

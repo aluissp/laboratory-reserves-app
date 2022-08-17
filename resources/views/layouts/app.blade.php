@@ -70,6 +70,12 @@
                     Gestionar usuarios
                     <i class="fa-solid fa-users-gear mt-1 ms-1"></i>
                   </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item d-flex justify-content-between"
+                    href="{{ route('majors.index') }}">
+                    Carreras
+                    <i class="fa-solid fa-layer-group mt-1 ms-1"></i>
+                  </a>
                 </div>
               </li>
               {{-- Roles --}}
@@ -167,7 +173,7 @@
       @if ($alert = session()->get('alert'))
         <x-alert :type="$alert['type']" :message="$alert['message']" />
       @endif
-      
+
       @yield('content')
     </main>
   </div>

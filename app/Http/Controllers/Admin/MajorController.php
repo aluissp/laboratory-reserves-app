@@ -15,7 +15,9 @@ class MajorController extends Controller
      */
     public function index()
     {
-        //
+        $majors = Major::paginate(6);
+        // dd($majors);
+        return view('users.major', compact('majors'));
     }
 
     /**
@@ -36,7 +38,20 @@ class MajorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255|unique:majors'
+        ], [], [
+            'name' => 'nombre'
+        ]);
+
+        $major = Major::create([
+            'name' => $data['name'],
+        ]);
+
+        return redirect()->route('majors.index')->with('alert', [
+            'message' => "Carrera $major->name creado correctamente.",
+            'type' => 'success'
+        ]);
     }
 
     /**
@@ -58,7 +73,6 @@ class MajorController extends Controller
      */
     public function edit(Major $major)
     {
-        //
     }
 
     /**
@@ -70,7 +84,18 @@ class MajorController extends Controller
      */
     public function update(Request $request, Major $major)
     {
-        //
+        $data = $request->validate([
+            'name-update' => 'required|string|max:255|unique:majors,name'
+        ], [], [
+            'name-update' => 'nombre'
+        ]);
+
+        $major->update(['name' => $data['name-update']]);
+
+        return redirect()->route('majors.index')->with('alert', [
+            'message' => "Carrera $major->name Actualizado correctamente.",
+            'type' => 'success'
+        ]);
     }
 
     /**
@@ -81,6 +106,11 @@ class MajorController extends Controller
      */
     public function destroy(Major $major)
     {
-        //
+        $major->delete();
+
+        return redirect()->route('majors.index')->with('alert', [
+            'message' => "Carrera $major->name eliminada correctamente.",
+            'type' => 'success'
+        ]);
     }
 }
