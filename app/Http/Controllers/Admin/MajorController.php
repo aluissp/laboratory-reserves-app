@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Major;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MajorController extends Controller
 {
@@ -112,5 +113,19 @@ class MajorController extends Controller
             'message' => "Carrera $major->name eliminada correctamente.",
             'type' => 'success'
         ]);
+    }
+
+    public function filter($filter)
+    {
+        if ($filter == 'all') {
+            $data = DB::table('majors')->limit(6)->get();
+        } else {
+            $data = Major::where('name', 'like', "%$filter%")->limit(5)->get();
+        }
+
+        return response()->json([
+            'response' => $data,
+            'message' => 'Datos obtenidos correctamente.'
+        ], 200);
     }
 }

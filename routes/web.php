@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn () => auth()->check() ? route('home') : view('welcome'));
+Route::get('/', fn () => auth()->check() ? redirect()->route('home') : view('welcome'));
 
 Auth::routes();
 
@@ -26,4 +26,6 @@ Route::middleware(['auth'])->group(function () {
 
   $role = config('role.admin');
   Route::resource('majors', MajorController::class)->except('create', 'show', 'edit')->middleware("role:{$role}");
+
+  Route::get('/majors/{filter}/filter', [MajorController::class,'filter'])->name('majors.filter');
 });
