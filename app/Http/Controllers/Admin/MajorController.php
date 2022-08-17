@@ -94,7 +94,7 @@ class MajorController extends Controller
         $major->update(['name' => $data['name-update']]);
 
         return redirect()->route('majors.index')->with('alert', [
-            'message' => "Carrera $major->name Actualizado correctamente.",
+            'message' => "Carrera $major->name actualizado correctamente.",
             'type' => 'success'
         ]);
     }

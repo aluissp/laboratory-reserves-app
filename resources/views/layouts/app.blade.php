@@ -90,7 +90,7 @@
                     <i class="fa-solid fa-pen-ruler mt-1 ms-1"></i>
                   </a>
                   <a class="dropdown-item d-flex justify-content-between"
-                    href="#">
+                    href="{{ route('roles.index') }}">
                     Agregar roles
                     <i class="fa-solid fa-ruler-horizontal mt-1 ms-1"></i>
                   </a>
