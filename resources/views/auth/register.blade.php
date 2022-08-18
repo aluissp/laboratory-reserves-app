@@ -102,6 +102,50 @@
                 </div>
               </div>
 
+              <div class="row mb-3">
+                <label for="role"
+                  class="col-md-4 col-form-label text-md-end">{{ __('Elija un rol') }}</label>
+
+                <div class="col-md-6">
+                  <input id="role" list="roles"
+                    class="form-control @error('role') is-invalid @enderror form-control-user"
+                    name="role" value="{{ old('role') }}">
+                  <datalist id="roles">
+                    @foreach ($roles as $role)
+                      <option value="{{ $role->name }}">
+                    @endforeach
+                  </datalist>
+
+                  @error('role')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="major"
+                  class="col-md-4 col-form-label text-md-end">{{ __('Elija una carrera') }}</label>
+
+                <div class="col-md-6">
+                  <input id="major" list="majors"
+                    class="form-control @error('major') is-invalid @enderror form-control-user"
+                    name="major" value="{{ old('major') }}">
+                  <datalist id="majors">
+                    @foreach ($majors as $major)
+                      <option value="{{ $major->name }}">
+                    @endforeach
+                  </datalist>
+
+                  @error('major')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+              </div>
+
               <div class="row mb-0">
                 <div class="col-md-6 offset-md-4">
                   <button type="submit" class="btn btn-primary btn-user">

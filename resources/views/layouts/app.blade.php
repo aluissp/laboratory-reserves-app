@@ -76,22 +76,10 @@
                     Carreras
                     <i class="fa-solid fa-layer-group mt-1 ms-1"></i>
                   </a>
-                </div>
-              </li>
-              {{-- Roles --}}
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-                  href="" role="button" aria-haspopup="true"
-                  aria-expanded="false">Roles</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item d-flex justify-content-between"
-                    href="#">
-                    Asignar roles
-                    <i class="fa-solid fa-pen-ruler mt-1 ms-1"></i>
-                  </a>
+                  <div class="dropdown-divider"></div>
                   <a class="dropdown-item d-flex justify-content-between"
                     href="{{ route('roles.index') }}">
-                    Agregar roles
+                    Roles
                     <i class="fa-solid fa-ruler-horizontal mt-1 ms-1"></i>
                   </a>
                 </div>

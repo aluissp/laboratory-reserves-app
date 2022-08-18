@@ -40,4 +40,6 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/roles/{filter}/filter', [RoleController::class, 'filter'])
     ->name('majors.filter')
     ->middleware("role:{$role}");
+
+  Route::resource('users', Admin::class)->middleware("role:{$role}");
 });

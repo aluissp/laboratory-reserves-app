@@ -29,6 +29,8 @@ class StoreUserRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
             'password_confirmation' => ['required', 'string', 'min:8', 'same:password'],
+            'role' => 'required|string|max:255',
+            'major' => 'string|max:255'
         ];
     }
 
@@ -48,6 +50,8 @@ class StoreUserRequest extends FormRequest
             'email' => 'correo electrónico',
             'password' => 'contraseña',
             'password_confirmation' => 'confirmar contraseña',
+            'role' => 'rol',
+            'major' => 'carrera',
         ];
     }
 }
