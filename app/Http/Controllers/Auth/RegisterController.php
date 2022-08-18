@@ -54,7 +54,7 @@ class RegisterController extends Controller
         $major->users()->save($user);
         $user->assignRole($data['role']);
 
-        return redirect()->route('home')->with('alert', [
+        return redirect()->route('users.index')->with('alert', [
             'message' => "Usuario $user->name $user->surname creado correctamente.",
             'type' => 'success'
         ]);

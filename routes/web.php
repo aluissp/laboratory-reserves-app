@@ -37,9 +37,11 @@ Route::middleware(['auth'])->group(function () {
     ->except('create', 'show', 'edit')
     ->middleware("role:{$role}");
 
-  Route::get('/roles/{filter}/filter', [RoleController::class, 'filter'])
-    ->name('majors.filter')
+  Route::resource('users', Admin::class)
+    ->except('show', 'store', 'create')
     ->middleware("role:{$role}");
 
-  Route::resource('users', Admin::class)->middleware("role:{$role}");
+  Route::get('/users/{filter}/filter', [Admin::class, 'filter'])
+    ->name('users.filter')
+    ->middleware("role:{$role}");
 });

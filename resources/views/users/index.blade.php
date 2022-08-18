@@ -25,7 +25,7 @@
     <table class="table table-hover ">
       <thead>
         <tr>
-          <th scope="col"><i class="fa-solid fa-id-badge"></i></th>
+          <th scope="col">#</i></th>
           <th scope="col">Nombre</th>
           <th scope="col">Correo electrónico</th>
           <th scope="col">Rol</th>
@@ -33,18 +33,18 @@
           <th scope="col">Acciones</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="user-list-view">
         @foreach ($users as $user)
           <tr>
             <th scope="row">{{ $user->id }}</th>
             <td>{{ $user->name }} {{ $user->surname }}</td>
             <td><a href="mailto:{{ $user->email }}"
                 class="text-info">{{ $user->email }}</a></td>
-            {{-- <td>{{ $user->roles()->first()->name }}</td> --}}
-            <td>{{ $user->major?->name }}</td>
+            <td>{{ $user->roles?->first()->name }}</td>
             <td>{{ $user->major?->name }}</td>
             <td>
-              <a class="btn btn-secondary mb-0 me-2 p-1 px-2">
+              <a href="{{ route('users.edit', $user->id) }}"
+                class="btn btn-secondary mb-0 me-2 p-1 px-2">
                 <x-icon icon="pencil" />
               </a>
               @if (!$user->hasRole(config('role.admin')))
@@ -67,3 +67,5 @@
     </table>
   </div>
 @endsection
+
+<script src="{{ asset('js/admin/users.js') }}" defer></script>

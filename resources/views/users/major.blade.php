@@ -83,4 +83,4 @@
   </div>
 @endsection
 
-<script src="{{ asset('js/majors/majors.js') }}" defer></script>
+<script src="{{ asset('js/admin/majors.js') }}" defer></script>
