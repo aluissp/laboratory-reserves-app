@@ -66,7 +66,7 @@
 
                   </a>
                   <a class="dropdown-item d-flex justify-content-between"
-                    href="#">
+                    href="{{ route('users.index') }}">
                     Gestionar usuarios
                     <i class="fa-solid fa-users-gear mt-1 ms-1"></i>
                   </a>

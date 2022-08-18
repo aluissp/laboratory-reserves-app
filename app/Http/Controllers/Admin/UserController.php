@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -15,7 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::all();
+        $users = User::orderBy('name')->get();
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -81,6 +84,11 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('users.index')->with('alert', [
+            'message' => "Usuario $user->name $user->surname eliminado correctamente.",
+            'type' => 'success'
+        ]);
     }
 }
