@@ -33,7 +33,7 @@
           <th scope="col">Acciones</th>
         </tr>
       </thead>
-      <tbody id="user-list-view">
+      <tbody id="users-list-view">
         @foreach ($users as $user)
           <tr>
             <th scope="row">{{ $user->id }}</th>

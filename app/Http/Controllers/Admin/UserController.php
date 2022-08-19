@@ -7,8 +7,6 @@ use App\Http\Requests\StoreUserRequest;
 use App\Models\Major;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
@@ -112,12 +110,17 @@ class UserController extends Controller
     public function filter($filter)
     {
         if ($filter == 'all') {
-            $data = DB::table('majors')->get();
+            $data = User::get();
         } else {
             $data = User::where('name', 'like', "%$filter%")
                 ->orWhere('surname', 'like', "%$filter%")
                 ->limit(6)
                 ->get();
+        }
+
+        foreach ($data as $user) {
+            $user['roles'] = $user->roles?->first()->name;
+            $user['major'] = $user->major?->name;
         }
 
         return response()->json([
