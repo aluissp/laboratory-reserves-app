@@ -114,7 +114,7 @@
                     <i class="fa-solid fa-chalkboard-user mt-1 ms-1"></i>
                   </a>
                   <a class="dropdown-item d-flex justify-content-between"
-                    href="#">
+                    href="{{ route('labs.create') }}">
                     Registrar laboratorio
                     <i class="fa-solid fa-plus mt-1"></i>
                   </a>

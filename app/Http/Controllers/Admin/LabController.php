@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lab;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LabController extends Controller
@@ -25,7 +26,8 @@ class LabController extends Controller
      */
     public function create()
     {
-        //
+        $staffs = User::get();
+        return view('labs.create', compact('staffs'));
     }
 
     /**

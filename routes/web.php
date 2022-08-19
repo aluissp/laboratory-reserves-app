@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\LabController;
 use App\Http\Controllers\Admin\MajorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController as Admin;
@@ -43,5 +44,9 @@ Route::middleware(['auth'])->group(function () {
 
   Route::get('/users/{filter}/filter', [Admin::class, 'filter'])
     ->name('users.filter')
+    ->middleware("role:{$role}");
+
+  // Laboratorios
+  Route::resource('labs', LabController::class)
     ->middleware("role:{$role}");
 });
