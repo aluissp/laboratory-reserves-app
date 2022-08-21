@@ -9,6 +9,14 @@ class Lab extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'location',
+        'description',
+        'capacity',
+    ];
+
+
     public function staffInCharge()
     {
         return $this->belongsTo(User::class, 'staff_in_charge');

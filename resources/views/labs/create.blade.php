@@ -8,7 +8,7 @@
           <div class="card-header">Registrar un nuevo laboratorio</div>
 
           <div class="card-body">
-            <form method="POST" action="{{ route('labs.create') }}">
+            <form method="POST" action="{{ route('labs.store') }}">
               @csrf
               <div class="row">
                 <div class="mb-3 col-6">
@@ -79,7 +79,8 @@
                     name="staff" value="{{ old('staff') }}">
                   <datalist id="staffs">
                     @foreach ($staffs as $staff)
-                      <option value="{{ $staff->name }}">
+                      <option
+                        value="{{ $staff->id }} - {{ $staff->name }} {{ $staff->surname }}">
                     @endforeach
                   </datalist>
 
