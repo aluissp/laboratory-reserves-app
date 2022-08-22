@@ -17,7 +17,8 @@ class LabController extends Controller
      */
     public function index()
     {
-        //
+        $labs = Lab::paginate(6);
+        return view('labs.index', compact('labs'));
     }
 
     /**
@@ -44,8 +45,7 @@ class LabController extends Controller
         $staff = User::firstWhere('email', $request->staff);
         $staff->labs()->save($lab);
 
-        // return redirect()->route('labs.index');
-        return redirect()->route('labs.create')->with('alert', [
+        return redirect()->route('labs.index')->with('alert', [
             'message' => "Laboratorio $lab->name creado correctamente.",
             'type' => 'success'
         ]);
@@ -94,5 +94,25 @@ class LabController extends Controller
     public function destroy(Lab $lab)
     {
         //
+    }
+
+    public function filter($filter)
+    {
+        if ($filter == 'all') {
+            $data = Lab::get();
+        } else {
+            $data = Lab::where('name', 'like', "%$filter%")
+                ->limit(6)
+                ->get();
+        }
+
+        foreach ($data as $lab) {
+            $lab->staffInCharge;
+        }
+
+        return response()->json([
+            'response' => $data,
+            'message' => 'Datos obtenidos correctamente.'
+        ], 200);
     }
 }

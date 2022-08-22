@@ -46,7 +46,11 @@ Route::middleware(['auth'])->group(function () {
     ->name('users.filter')
     ->middleware("role:{$role}");
 
-  // Laboratorios
-  Route::resource('labs', LabController::class)
+    // Laboratorios
+    Route::resource('labs', LabController::class)
     ->middleware("role:{$role}");
+
+    Route::get('/labs/{filter}/filter', [LabController::class, 'filter'])
+      ->name('labs.filter')
+      ->middleware("role:{$role}");
 });

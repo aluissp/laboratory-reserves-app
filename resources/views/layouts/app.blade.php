@@ -109,7 +109,7 @@
                   aria-expanded="false">Laboratorios</a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item d-flex justify-content-between"
-                    href="#">
+                    href="{{ route('labs.index') }}">
                     Mostrar laboratorios
                     <i class="fa-solid fa-chalkboard-user mt-1 ms-1"></i>
                   </a>
