@@ -45,8 +45,8 @@
                 <div class='px-3'>
                   <div class="form-floating">
                     <textarea class="form-control @error('description') is-invalid @enderror"
-                      id="description" name="description" value="{{ old('description') }}"
-                      style="height: 100px" placeholder="Escribe una descripción rapida."></textarea>
+                      id="description" name="description" style="height: 100px"
+                      placeholder="Escribe una descripción rapida.">{{ old('description') }}</textarea>
                     <label for="description">Descripción</label>
                   </div>
                   @error('description')
@@ -79,8 +79,9 @@
                     name="staff" value="{{ old('staff') }}">
                   <datalist id="staffs">
                     @foreach ($staffs as $staff)
-                      <option
-                        value="{{ $staff->id }} - {{ $staff->name }} {{ $staff->surname }}">
+                      <option value="{{ $staff->email }}">
+                        {{ $staff->name }} {{ $staff->surname }}
+                      </option>
                     @endforeach
                   </datalist>
 

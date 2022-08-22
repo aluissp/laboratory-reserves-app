@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Lab;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreLabRequest extends FormRequest
 {
@@ -23,24 +26,21 @@ class StoreLabRequest extends FormRequest
      */
     public function rules()
     {
+        // dd(User::firstWhere('email', $this->staff)->id);
+        // request()->staff = User::firstWhere('email', $this->staff)->id;
+
+        dd($request->staff);
         return [
             'name' => ['required', 'string', 'max:255'],
             'location' => ['required', 'string', 'max:255'],
-            'description' => [
-                'required',
-                'string',
-                'max:255',
-            ],
+            'description' => ['required', 'string', 'max:255',],
             'capacity' => ['required', 'integer', 'min:1', 'max:100'],
-            'staff' => 'required|string|max:255'
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            // 'email.unique' => 'Ya hay un usuario registrado con el mismo correo.',
-            // 'password_confirmation.same' => 'Las contraseñas no coinciden. Vuelve a intentarlo.'
+            'staff' => [
+                'required',
+                'email',
+                'exists:users,email',
+                'unique:labs,staff_in_charge'
+            ]
         ];
     }
 

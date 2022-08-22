@@ -23,8 +23,8 @@ return new class extends Migration
             $table->date('date');
             $table->time('start_time');
             $table->time('end_time');
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Lab::class);
+            $table->foreignIdFor(User::class)->nullable();
+            $table->foreignIdFor(Lab::class)->nullable();
             $table->timestamps();
         });
     }
