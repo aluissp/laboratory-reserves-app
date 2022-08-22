@@ -49,9 +49,9 @@ class User extends Authenticatable
         return $this->belongsTo(Major::class);
     }
 
-    public function lab()
+    public function labs()
     {
-        return $this->hasOne(Lab::class, 'staff_in_charge');
+        return $this->hasMany(Lab::class, 'staff_in_charge');
     }
 
     public function users()

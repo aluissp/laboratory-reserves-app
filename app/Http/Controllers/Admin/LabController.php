@@ -39,15 +39,16 @@ class LabController extends Controller
      */
     public function store(StoreLabRequest $request)
     {
-        $staff = User::firstWhere('email', $request->staff);
-        $request->staff = $staff->id;
-        dd($request);
         $data = $request->validated();
         $lab = Lab::create($data);
-        $staff->lab()->save($lab);
+        $staff = User::firstWhere('email', $request->staff);
+        $staff->labs()->save($lab);
 
         // return redirect()->route('labs.index');
-        return redirect()->route('labs.create');
+        return redirect()->route('labs.create')->with('alert', [
+            'message' => "Laboratorio $lab->name creado correctamente.",
+            'type' => 'success'
+        ]);
     }
 
     /**
