@@ -52,17 +52,6 @@ class LabController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Lab  $lab
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Lab $lab)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Lab  $lab
@@ -70,7 +59,8 @@ class LabController extends Controller
      */
     public function edit(Lab $lab)
     {
-        //
+        $staffs = User::get();
+        return view('labs.edit', compact('lab', 'staffs'));
     }
 
     /**
@@ -80,9 +70,17 @@ class LabController extends Controller
      * @param  \App\Models\Lab  $lab
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lab $lab)
+    public function update(StoreLabRequest $request, Lab $lab)
     {
-        //
+        $data = $request->validated();
+        $lab->update($data);
+        $staff = User::firstWhere('email', $request->staff);
+        $staff->labs()->save($lab);
+
+        return redirect()->route('labs.index')->with('alert', [
+            'message' => "Laboratorio $lab->name actualizado correctamente.",
+            'type' => 'success'
+        ]);
     }
 
     /**
@@ -93,7 +91,12 @@ class LabController extends Controller
      */
     public function destroy(Lab $lab)
     {
-        //
+        $lab->delete();
+
+        return redirect()->route('labs.index')->with('alert', [
+            'message' => "Laboratorio $lab->name eliminado correctamente.",
+            'type' => 'success'
+        ]);
     }
 
     public function filter($filter)

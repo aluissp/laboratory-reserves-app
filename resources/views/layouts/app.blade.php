@@ -133,7 +133,7 @@
                   aria-labelledby="userDropdown">
 
                   <a class="dropdown-item d-flex justify-content-between"
-                    href="#">
+                    href="{{ route('users.edit', auth()->user()->id) }}">
                     Perfil
                     <i class="fa-solid fa-user mt-1 ms-1"></i>
                   </a>
