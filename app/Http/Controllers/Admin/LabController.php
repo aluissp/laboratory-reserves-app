@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreLabRequest;
 use App\Models\Lab;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class LabController extends Controller
 {
