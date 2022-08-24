@@ -76,7 +76,7 @@
             <div class="mb-3 col-6">
               <label for="date"
                 class="col-md-4 col-form-label">Fecha</label>
-              <input id="date" type="number"
+              <input id="date" type="date"
                 class="form-control @error('date') is-invalid @enderror form-control-user"
                 name="date" value="{{ old('date') }}">
 
@@ -90,7 +90,7 @@
               <label for="color" class="col-form-label">Color</label>
               <input id="color" type="color"
                 class="form-control @error('color') is-invalid @enderror form-control-user"
-                name="color" value="{{ old('color') }}">
+                name="color" value="{{ old('color') ?? '#2C3E50' }}">
 
               @error('color')
                 <span class="invalid-feedback" role="alert">
@@ -138,4 +138,4 @@
   </div>
 </div>
 
-<script src="{{ asset('js/calendar/main.js') }}" defer></script>
+<script src="{{ asset('js/calendar/main.js') }}" type="module" defer></script>
