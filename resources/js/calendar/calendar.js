@@ -22,21 +22,16 @@ export default class myCalendar {
                 right: "dayGridMonth,timeGridWeek,listWeek",
             },
         });
+
+        this.reserveController = null;
     }
 
     getCalendar() {
         return this.calendar;
     }
+
+    setReserveController(reserveController) {
+        this.reserveController = reserveController;
+    }
 }
 
-// const formModal = new bootstrap.Modal(
-//     document.querySelector("#add-event-modal")
-// );
-// const fecha = document.querySelector("#date");
-
-// calendar.on("dateClick", (info) => {
-//     console.log(info);
-//     fecha.value = info.dateStr;
-//     formModal.show();
-// });
-// calendar.render();

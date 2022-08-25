@@ -7,135 +7,117 @@
       </div>
     </div>
   </div>
-@endsection
 
-<!-- Add event Modal -->
-<div class="modal fade" id="add-event-modal" data-bs-backdrop="static"
-  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-  aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Crear nueva reserva
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"
-          aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" id="add-new-event"
-          action="{{ route('labs.store') }}">
-          @csrf
-          <div class="row">
-            <div class="mb-3 col-6">
-              <label for="name"
-                class="col-md-4 col-form-label">Nombre</label>
-              <input id="name" type="text"
-                class="form-control @error('name') is-invalid @enderror form-control-user"
-                name="name" value="{{ old('name') }}" autocomplete="name"
-                autofocus>
 
-              @error('name')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
+  <!-- Add event Modal -->
+  <div class="modal fade" id="event-modal" data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-labelledby="event-title"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="event-title">Crear nueva reserva
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" id="event-form" action="{{ route('labs.store') }}">
+            @csrf
+            <div class="row">
+              <div class="mb-3 col-6">
+                <label class="col-md-4 col-form-label">Nombre</label>
+                <input type="text" class="form-control form-control-user"
+                  name="name" autocomplete="name" autofocus>
+                <span class="invalid-feedback d-none" role="alert">
+                  <strong></strong>
                 </span>
-              @enderror
-            </div>
-            <div class="mb-3 col-6">
-              <label for="assistants"
-                class="col-md-4 col-form-label">Asistentes</label>
-              <input id="assistants" type="number"
-                class="form-control @error('assistants') is-invalid @enderror form-control-user"
-                name="assistants" value="{{ old('assistants') }}">
-
-              @error('assistants')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-              @enderror
-            </div>
-
-          </div>
-
-          <div class="row mb-3">
-            <div class='px-3'>
-              <div class="form-floating">
-                <textarea class="form-control @error('description') is-invalid @enderror"
-                  id="description" name="description" style="height: 100px"
-                  placeholder="Escribe una descripción rapida.">{{ old('description') }}</textarea>
-                <label for="description">Descripción</label>
               </div>
-              @error('description')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-              @enderror
-            </div>
-          </div>
+              <div class="mb-3 col-6">
+                <label class="col-md-4 col-form-label">Asistentes</label>
+                <input type="number" class="form-control form-control-user"
+                  name="assistants">
 
-          <div class="row">
-            <div class="mb-3 col-6">
-              <label for="date"
-                class="col-md-4 col-form-label">Fecha</label>
-              <input id="date" type="date"
-                class="form-control @error('date') is-invalid @enderror form-control-user"
-                name="date" value="{{ old('date') }}">
-
-              @error('date')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
+                <span class="invalid-feedback d-none" role="alert">
+                  <strong></strong>
                 </span>
-              @enderror
+              </div>
             </div>
-            <div class="mb-3 col-6">
-              <label for="color" class="col-form-label">Color</label>
-              <input id="color" type="color"
-                class="form-control @error('color') is-invalid @enderror form-control-user"
-                name="color" value="{{ old('color') ?? '#2C3E50' }}">
 
-              @error('color')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-              @enderror
+            <div class="row mb-3">
+              <div class='px-3'>
+                <div class="form-floating">
+                  <textarea class="form-control" id="description" name="description"
+                    style="height: 100px" placeholder="Escribe una descripción rapida."></textarea>
+                  <label for="description">Descripción</label>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="mb-3 col-6">
-              <label for="startTime" class="col-md-7 col-form-label">Hora
-                inicial</label>
-              <input id="startTime" type="time"
-                class="form-control @error('startTime') is-invalid @enderror form-control-user"
-                name="startTime" value="{{ old('startTime') }}">
 
-              @error('startTime')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-              @enderror
-            </div>
-            <div class="mb-3 col-6">
-              <label for="endTime" class="col-form-label">Hora final</label>
-              <input id="endTime" type="time"
-                class="form-control @error('endTime') is-invalid @enderror form-control-user"
-                name="endTime" value="{{ old('endTime') }}">
+            <div class="row">
+              <div class="mb-3 col-6">
+                <label class="col-md-4 col-form-label">Fecha</label>
+                <input type="date" class="form-control form-control-user"
+                  name="date">
+              </div>
+              <div class="mb-3 col-6">
+                <label class="col-form-label">Color</label>
+                <input type="color" class="form-control form-control-user"
+                  name="color" value="#2C3E50">
 
-              @error('endTime')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
+                <span class="invalid-feedback d-none" role="alert">
+                  <strong></strong>
                 </span>
-              @enderror
+
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary"
-          data-bs-dismiss="modal">Cerrar</button>
-        <button type="submit" form="add-new-event"
-          class="btn btn-primary">Guardar reserva</button>
+            <div class="row">
+              <div class="mb-3 col-6">
+                <label class="col-md-7 col-form-label">Hora
+                  inicial</label>
+                <input type="time" class="form-control form-control-user"
+                  name="start-time" value="07:00:00">
+
+                <span class="invalid-feedback d-none" role="alert">
+                  <strong></strong>
+                </span>
+              </div>
+              <div class="mb-3 col-6">
+                <label class="col-form-label">Hora final</label>
+                <input type="time" class="form-control form-control-user"
+                  name="end-time" value="08:00:00">
+
+                <span class="invalid-feedback d-none" role="alert">
+                  <strong></strong>
+                </span>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-form-label">Eliga un laboratorio</label>
+              <input list="labs" class="form-control form-control-user"
+                name="staff">
+              <datalist id="labs">
+                @foreach ($labs as $lab)
+                  <option id="{{ $lab->id }}" value="{{ $lab->name }}">
+                    {{ $lab->location }}
+                  </option>
+                @endforeach
+              </datalist>
+              <span class="invalid-feedback d-none" role="alert">
+                <strong></strong>
+              </span>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"
+            data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" form="events-form"
+            class="btn btn-primary">Guardar reserva</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<script src="{{ asset('js/calendar/main.js') }}" type="module" defer></script>
+  <script src="{{ asset('js/calendar/main.js') }}" type="module" defer></script>
+@endsection
