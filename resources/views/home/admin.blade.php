@@ -9,34 +9,34 @@
   </div>
 
 
-  <!-- Add event Modal -->
+  <!-- Event Modal -->
   <div class="modal fade" id="event-modal" data-bs-backdrop="static"
     data-bs-keyboard="false" tabindex="-1" aria-labelledby="event-title"
     aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="event-title">Crear nueva reserva
+          <h5 class="modal-title" id="event-title">
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"
             aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="POST" id="event-form" action="{{ route('labs.store') }}">
-            @csrf
+          <form id="event-form">
             <div class="row">
               <div class="mb-3 col-6">
                 <label class="col-md-4 col-form-label">Nombre</label>
-                <input type="text" class="form-control form-control-user"
-                  name="name" autocomplete="name" autofocus>
+                <input id="name" type="text"
+                  class="form-control form-control-user" name="name"
+                  autocomplete="name" autofocus>
                 <span class="invalid-feedback d-none" role="alert">
                   <strong></strong>
                 </span>
               </div>
               <div class="mb-3 col-6">
                 <label class="col-md-4 col-form-label">Asistentes</label>
-                <input type="number" class="form-control form-control-user"
-                  name="assistants">
+                <input id="assistants" type="number"
+                  class="form-control form-control-user" name="assistants">
 
                 <span class="invalid-feedback d-none" role="alert">
                   <strong></strong>
@@ -57,8 +57,8 @@
             <div class="row">
               <div class="mb-3 col-6">
                 <label class="col-md-4 col-form-label">Fecha</label>
-                <input type="date" class="form-control form-control-user"
-                  name="date">
+                <input id="date" type="date"
+                  class="form-control form-control-user" name="date">
               </div>
               <div class="mb-3 col-6">
                 <label class="col-form-label">Color</label>
@@ -75,7 +75,7 @@
               <div class="mb-3 col-6">
                 <label class="col-md-7 col-form-label">Hora
                   inicial</label>
-                <input type="time" class="form-control form-control-user"
+                <input id="start-time" type="time" class="form-control form-control-user"
                   name="start-time" value="07:00:00">
 
                 <span class="invalid-feedback d-none" role="alert">
@@ -83,7 +83,7 @@
                 </span>
               </div>
               <div class="mb-3 col-6">
-                <label class="col-form-label">Hora final</label>
+                <label id="end-time" class="col-form-label">Hora final</label>
                 <input type="time" class="form-control form-control-user"
                   name="end-time" value="08:00:00">
 
@@ -92,9 +92,9 @@
                 </span>
               </div>
             </div>
-            <div class="row mb-3">
+            <div class="row mb-3 px-3">
               <label class="col-form-label">Eliga un laboratorio</label>
-              <input list="labs" class="form-control form-control-user"
+              <input id="lab-input" list="labs" class="form-control form-control-user"
                 name="staff">
               <datalist id="labs">
                 @foreach ($labs as $lab)
@@ -112,7 +112,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary"
             data-bs-dismiss="modal">Cerrar</button>
-          <button type="submit" form="events-form"
+          <button id='event-form-btn' type="button"
             class="btn btn-primary">Guardar reserva</button>
         </div>
       </div>
