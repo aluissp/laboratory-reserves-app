@@ -28,7 +28,6 @@ export default class Reservation {
       url: `${this.url}/reservations`,
       data,
     };
-    console.log(request);
     axios(request)
       .then((response) => {
         console.log(response.data);

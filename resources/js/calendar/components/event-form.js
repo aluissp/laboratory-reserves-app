@@ -58,6 +58,7 @@ export default class EventForm {
     this.form.start_time.value = '07:00:00';
     this.form.end_time.value = '08:00:00';
     this.form.lab_id.value = '';
+    this.form.color.value = '#2C3E50';
   }
 
   onCreateClick(callback) {

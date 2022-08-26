@@ -15,7 +15,8 @@ class Reservation extends Model
         'assistants',
         'date',
         'start_time',
-        'end_time'
+        'end_time',
+        'color'
     ];
 
     public function user()
