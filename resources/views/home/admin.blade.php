@@ -62,8 +62,9 @@
               </div>
               <div class="mb-3 col-6">
                 <label class="col-form-label">Color</label>
-                <input type="color" class="form-control form-control-user"
-                  name="color" value="#2C3E50">
+                <input id="color" type="color"
+                  class="form-control form-control-user" name="color"
+                  value="#2C3E50">
 
                 <span class="invalid-feedback d-none" role="alert">
                   <strong></strong>
@@ -75,8 +76,9 @@
               <div class="mb-3 col-6">
                 <label class="col-md-7 col-form-label">Hora
                   inicial</label>
-                <input id="start-time" type="time" class="form-control form-control-user"
-                  name="start-time" value="07:00:00">
+                <input id="start-time" type="time"
+                  class="form-control form-control-user" name="start-time"
+                  value="07:00:00">
 
                 <span class="invalid-feedback d-none" role="alert">
                   <strong></strong>
@@ -94,11 +96,11 @@
             </div>
             <div class="row mb-3 px-3">
               <label class="col-form-label">Eliga un laboratorio</label>
-              <input id="lab-input" list="labs" class="form-control form-control-user"
-                name="staff">
+              <input id="lab-input" list="labs"
+                class="form-control form-control-user" name="lab">
               <datalist id="labs">
                 @foreach ($labs as $lab)
-                  <option id="{{ $lab->id }}" value="{{ $lab->name }}">
+                  <option value="{{ $lab->id }} - {{ $lab->name }}">
                     {{ $lab->location }}
                   </option>
                 @endforeach
@@ -112,7 +114,11 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary"
             data-bs-dismiss="modal">Cerrar</button>
-          <button id='event-form-btn' type="button"
+          <button id="btn-delete-form" type="button"
+            class="btn btn-danger">Eliminar</button>
+          <button id="btn-edit-form" type="button"
+            class="btn btn-info">Guardar cambios</button>
+          <button id='btn-new-form' type="button"
             class="btn btn-primary">Guardar reserva</button>
         </div>
       </div>

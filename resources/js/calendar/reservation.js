@@ -6,13 +6,13 @@ export default class Reservation {
       const response = await axios.get(`${url}/labs/all/filter`);
       return new Reservation(response.data.response);
     } catch (error) {
-      return error;
+      console.log(error);
     }
   }
 
   constructor(labs) {
     this.admin = process.env.MIX_ADMIN_ROLE_NAME;
-    this.csrf = document.querySelector('meta[name="csrf-token"]').content;
+    this.url = process.env.MIX_URL_SERVE;
 
     this.reserves = [{}];
     this.labs = labs;
@@ -20,5 +20,22 @@ export default class Reservation {
 
   getLabs() {
     return [...this.labs];
+  }
+
+  createNewReservation(data, callback) {
+    const request = {
+      method: 'post',
+      url: `${this.url}/reservations`,
+      data,
+    };
+    console.log(request);
+    axios(request)
+      .then((response) => {
+        console.log(response.data);
+        callback('ok');
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   }
 }

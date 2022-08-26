@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreReservationRequest;
+use App\Models\Lab;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 
@@ -34,9 +36,16 @@ class ReservationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreReservationRequest $request)
     {
-        dd($request);
+        $data = $request->validated();
+        $lab = Lab::firstWhere('id', $data['lab_id']);
+        $reservation = auth()->user()->reservations()->create($data);
+        $lab->reservation()->save($reservation);
+        return response()->json([
+            'message' => "Reserva $reservation->name creada correctamente.",
+            'type' => 'success'
+        ], 200);
     }
 
     /**

@@ -32,6 +32,7 @@ export default class MyCalendar {
   onDateClick(callback) {
     this.calendar.on('dateClick', (info) => {
       info.title = 'Crear nueva reserva';
+      info.type = 'new';
       callback(info);
     });
   }

@@ -13,13 +13,23 @@ class StoreReservationRequest extends FormRequest
      */
     public function authorize()
     {
+        return $this->user()->hasRole(config('role.admin'));
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, mixed>
+     */
+    public function rules()
+    {
         return [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255',],
             'assistants' => ['required', 'integer', 'min:1', 'max:1000'],
-            'date' => ['required', 'date_format:d/m/Y'],
-            'start_time' => ['required', 'date_format:H:i'],
-            'end_time' => ['required', 'date_format:H:i', 'after:start_time'],
+            'date' => ['required', 'date_format:Y-m-d'],
+            'start_time' => ['required', 'date_format:H:i:s'],
+            'end_time' => ['required', 'date_format:H:i:s', 'after:startTime'],
             'lab_id' => ['required', 'exists:labs,id']
         ];
     }

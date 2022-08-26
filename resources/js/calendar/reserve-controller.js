@@ -7,6 +7,7 @@ export default class ReserveController {
 
     this.myCalendar = new MyCalendar(calendarEl);
     this.myCalendar.onDateClick((info) => this.openEventForm(info));
+    this.eventForm.onCreateClick((data) => this.createReserve(data));
   }
 
   setReservation(reservation) {
@@ -14,10 +15,14 @@ export default class ReserveController {
   }
 
   openEventForm(info) {
-    this.eventForm.setValues(info);
+    this.eventForm.uploadForm(info);
   }
-  
-  getCalendar(){
+
+  getCalendar() {
     return this.myCalendar.getCalendar();
+  }
+
+  createReserve(data) {
+    this.reservation.createNewReservation(data, (res) => console.log(res));
   }
 }
