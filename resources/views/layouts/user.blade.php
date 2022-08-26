@@ -53,37 +53,6 @@
                 </li>
               @endif
             @else
-              {{-- Usuarios --}}
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-                  href="#" role="button" aria-haspopup="true"
-                  aria-expanded="false">Usuarios</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item d-flex justify-content-between"
-                    href="{{ route('register') }}">
-                    Agregar usuario
-                    <i class="fa-solid fa-user-plus mt-1 ms-1"></i>
-
-                  </a>
-                  <a class="dropdown-item d-flex justify-content-between"
-                    href="{{ route('users.index') }}">
-                    Gestionar usuarios
-                    <i class="fa-solid fa-users-gear mt-1 ms-1"></i>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item d-flex justify-content-between"
-                    href="{{ route('majors.index') }}">
-                    Carreras
-                    <i class="fa-solid fa-layer-group mt-1 ms-1"></i>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item d-flex justify-content-between"
-                    href="{{ route('roles.index') }}">
-                    Roles
-                    <i class="fa-solid fa-ruler-horizontal mt-1 ms-1"></i>
-                  </a>
-                </div>
-              </li>
               {{-- Reservas --}}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -99,24 +68,6 @@
                     href="#">
                     Mis reservas
                     <i class="fa-solid fa-calendar-day mt-1"></i>
-                  </a>
-                </div>
-              </li>
-              {{-- Laboratorios --}}
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-                  href="#" role="button" aria-haspopup="true"
-                  aria-expanded="false">Laboratorios</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item d-flex justify-content-between"
-                    href="{{ route('labs.index') }}">
-                    Mostrar laboratorios
-                    <i class="fa-solid fa-chalkboard-user mt-1 ms-1"></i>
-                  </a>
-                  <a class="dropdown-item d-flex justify-content-between"
-                    href="{{ route('labs.create') }}">
-                    Registrar laboratorio
-                    <i class="fa-solid fa-plus mt-1"></i>
                   </a>
                 </div>
               </li>

@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Admin\LabController;
 use App\Http\Controllers\Admin\MajorController;
+use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController as Admin;
+use App\Http\Controllers\User\UserController as User;
 use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,31 +29,33 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/home', [HomeController::class, 'index'])->name('home');
 
   $role = config('role.admin');
-  Route::resource('majors', MajorController::class)
-    ->except('create', 'show', 'edit')
-    ->middleware("role:{$role}");
 
-  Route::get('/majors/{filter}/filter', [MajorController::class, 'filter'])
-    ->name('majors.filter')->middleware("role:{$role}");
+  Route::middleware("role:{$role}")->group(function () {
+    Route::resource('majors', MajorController::class)
+      ->except('create', 'show', 'edit');
 
-  Route::resource('roles', RoleController::class)
-    ->except('create', 'show', 'edit')
-    ->middleware("role:{$role}");
+    Route::get('/majors/{filter}/filter', [MajorController::class, 'filter'])
+      ->name('majors.filter');
 
-  Route::resource('users', Admin::class)
-    ->except('show', 'store', 'create')
-    ->middleware("role:{$role}");
+    Route::resource('roles', RoleController::class)
+      ->except('create', 'show', 'edit');
 
-  Route::get('/users/{filter}/filter', [Admin::class, 'filter'])
-    ->name('users.filter')
-    ->middleware("role:{$role}");
+    Route::resource('users', Admin::class)
+      ->except('show', 'store', 'create');
 
-  // Laboratorios
-  Route::resource('labs', LabController::class)
-    ->except('show')
-    ->middleware("role:{$role}");
+    Route::get('/users/{filter}/filter', [Admin::class, 'filter'])
+      ->name('users.filter');
 
-  Route::get('/labs/{filter}/filter', [LabController::class, 'filter'])
-    ->name('labs.filter')
-    ->middleware("role:{$role}");
+    // Laboratorios
+    Route::resource('labs', LabController::class)
+      ->except('show');
+
+    Route::get('/labs/{filter}/filter', [LabController::class, 'filter'])
+      ->name('labs.filter');
+
+    Route::resource('reservations', ReservationController::class)
+      ->except('create');
+  });
+
+  Route::get('/my-profile/{user}/edit', [User::class, 'edit'])->name('profile.edit');
 });

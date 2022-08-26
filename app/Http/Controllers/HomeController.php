@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lab;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +24,8 @@ class HomeController extends Controller
     public function index()
     {
         if (auth()->user()->hasRole(config('role.admin'))) {
-            return view('home.admin');
+            $labs = Lab::get();
+            return view('home.admin', compact('labs'));
         } else {
             return view('home.user');
         }

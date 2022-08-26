@@ -54,7 +54,7 @@ class User extends Authenticatable
         return $this->hasMany(Lab::class, 'staff_in_charge');
     }
 
-    public function users()
+    public function reservations()
     {
         return $this->hasMany(Reservation::class);
     }
