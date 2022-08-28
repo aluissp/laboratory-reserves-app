@@ -29,7 +29,8 @@
                 <input id="name" type="text"
                   class="form-control form-control-user" name="name"
                   autocomplete="name" autofocus>
-                <span class="invalid-feedback d-none" role="alert">
+                <span id="error-name" class="invalid-feedback d-none"
+                  role="alert">
                   <strong></strong>
                 </span>
               </div>
@@ -38,7 +39,8 @@
                 <input id="assistants" type="number"
                   class="form-control form-control-user" name="assistants">
 
-                <span class="invalid-feedback d-none" role="alert">
+                <span id="error-assistants" class="invalid-feedback d-none"
+                  role="alert">
                   <strong></strong>
                 </span>
               </div>
@@ -53,12 +55,16 @@
                 </div>
               </div>
             </div>
-
             <div class="row">
               <div class="mb-3 col-6">
                 <label class="col-md-4 col-form-label">Fecha</label>
                 <input id="date" type="date"
                   class="form-control form-control-user" name="date">
+
+                <span id="error-date" class="invalid-feedback d-none"
+                  role="alert">
+                  <strong></strong>
+                </span>
               </div>
               <div class="mb-3 col-6">
                 <label class="col-form-label">Color</label>
@@ -66,7 +72,8 @@
                   class="form-control form-control-user" name="color"
                   value="#2C3E50">
 
-                <span class="invalid-feedback d-none" role="alert">
+                <span id="error-color" class="invalid-feedback d-none"
+                  role="alert">
                   <strong></strong>
                 </span>
 
@@ -78,18 +85,21 @@
                   inicial</label>
                 <input id="start-time" type="time"
                   class="form-control form-control-user" name="start-time"
-                  value="07:00:00">
+                  value="07:00">
 
-                <span class="invalid-feedback d-none" role="alert">
+                <span id="error-start-time" class="invalid-feedback d-none"
+                  role="alert">
                   <strong></strong>
                 </span>
               </div>
               <div class="mb-3 col-6">
-                <label id="end-time" class="col-form-label">Hora final</label>
-                <input type="time" class="form-control form-control-user"
-                  name="end-time" value="08:00:00">
+                <label class="col-form-label">Hora final</label>
+                <input id="end-time" type="time"
+                  class="form-control form-control-user" name="end-time"
+                  value="08:00">
 
-                <span class="invalid-feedback d-none" role="alert">
+                <span id="error-end-time" class="invalid-feedback d-none"
+                  role="alert">
                   <strong></strong>
                 </span>
               </div>
@@ -105,7 +115,8 @@
                   </option>
                 @endforeach
               </datalist>
-              <span class="invalid-feedback d-none" role="alert">
+              <span id="error-lab" class="invalid-feedback d-none"
+                role="alert">
                 <strong></strong>
               </span>
             </div>

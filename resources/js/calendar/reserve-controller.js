@@ -23,6 +23,11 @@ export default class ReserveController {
   }
 
   createReserve(data) {
-    this.reservation.createNewReservation(data, (res) => console.log(res));
+    this.reservation.createNewReservation(data, (error, response) => {
+      if (error) {
+        this.eventForm.setErrors(error);
+        return;
+      }
+    });
   }
 }

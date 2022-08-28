@@ -1,6 +1,7 @@
 export default class EventForm {
   constructor() {
     this.form = this.getForm();
+    this.errorAlerts = this.getErrorAlerts();
     this.modal = new bootstrap.Modal(document.getElementById('event-modal'));
     this.btnCreate = document.getElementById('btn-new-form');
     this.btnEdit = document.getElementById('btn-edit-form');
@@ -33,6 +34,26 @@ export default class EventForm {
     };
   }
 
+  getErrorAlerts() {
+    const name = document.getElementById('error-name');
+    const assistants = document.getElementById('error-assistants');
+    const date = document.getElementById('error-date');
+    const color = document.getElementById('error-color');
+    const start_time = document.getElementById('error-start-time');
+    const end_time = document.getElementById('error-end-time');
+    const lab_id = document.getElementById('error-lab');
+
+    return {
+      name,
+      assistants,
+      date,
+      start_time,
+      end_time,
+      lab_id,
+      color,
+    };
+  }
+
   uploadForm(info) {
     this.cleanForm();
 
@@ -55,10 +76,18 @@ export default class EventForm {
     this.form.assistants.value = '';
     this.form.description.value = '';
     this.form.date.value = '';
-    this.form.start_time.value = '07:00:00';
-    this.form.end_time.value = '08:00:00';
+    this.form.start_time.value = '07:00';
+    this.form.end_time.value = '08:00';
     this.form.lab_id.value = '';
     this.form.color.value = '#2C3E50';
+
+    for (const formInput in this.form) {
+      this.form[formInput].classList.remove('is-invalid');
+    }
+
+    for (const alert in this.errorAlerts) {
+      this.errorAlerts[alert].classList.add('d-none');
+    }
   }
 
   onCreateClick(callback) {
@@ -66,18 +95,38 @@ export default class EventForm {
       const data = {};
       for (const item in this.form) {
         if (item === 'title') continue;
-        if (item === 'lab') {
+        if (item === 'lab_id') {
           data[item] = this.getLabId(this.form[item].value);
           continue;
         }
         data[item] = this.form[item].value;
       }
-
       callback(data);
     };
   }
 
   getLabId(value) {
     return Number(value.split('-')[0]);
+  }
+
+  setErrors(errors) {
+    // console.log(errors);
+    for (const element in this.form) {
+      if (element === 'title') continue;
+
+      this.form[element].classList.remove('is-invalid');
+      if (element === 'description') continue;
+
+      this.errorAlerts[element].classList.add('d-none');
+    }
+
+    for (const error in errors) {
+      this.form[error].classList.add('is-invalid');
+
+      if (error === 'description') continue;
+
+      this.errorAlerts[error].classList.remove('d-none');
+      this.errorAlerts[error].children[0].innerText = errors[error][0];
+    }
   }
 }

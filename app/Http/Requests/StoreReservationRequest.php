@@ -28,8 +28,8 @@ class StoreReservationRequest extends FormRequest
             'description' => ['required', 'string', 'max:255',],
             'assistants' => ['required', 'integer', 'min:1', 'max:1000'],
             'date' => ['required', 'date_format:Y-m-d'],
-            'start_time' => ['required', 'date_format:H:i:s'],
-            'end_time' => ['required', 'date_format:H:i:s', 'after:startTime'],
+            'start_time' => ['required', 'date_format:H:i'],
+            'end_time' => ['required', 'date_format:H:i', 'after:start_time'],
             'lab_id' => ['required', 'exists:labs,id'],
             'color' => 'string|max:20'
         ];
@@ -40,7 +40,7 @@ class StoreReservationRequest extends FormRequest
         return [
             'name' => 'nombre',
             'description' => 'descripción',
-            'assistant' => 'asistentes',
+            'assistants' => 'asistentes',
             'date' => 'fecha',
             'start_time' => 'hora inicial',
             'end_time' => 'hora final',
