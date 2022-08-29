@@ -22,7 +22,7 @@ class Lab extends Model
         return $this->belongsTo(User::class, 'staff_in_charge');
     }
 
-    public function reservation()
+    public function reservations()
     {
         return $this->hasMany(Reservation::class);
     }

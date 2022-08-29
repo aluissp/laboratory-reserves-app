@@ -11,6 +11,7 @@ export default class EventForm {
   setValues() {}
 
   getForm() {
+    const id = document.getElementById('id-reserve');
     const title = document.getElementById('event-title');
     const name = document.getElementById('name');
     const assistants = document.getElementById('assistants');
@@ -22,6 +23,7 @@ export default class EventForm {
     const color = document.getElementById('color');
 
     return {
+      id,
       title,
       name,
       assistants,
@@ -71,6 +73,7 @@ export default class EventForm {
     const buttons = [this.btnCreate, this.btnDelete, this.btnEdit];
     buttons.forEach((btn) => btn.classList.add('d-none'));
 
+    this.form.id.value = '';
     this.form.title.innerText = '';
     this.form.name.value = '';
     this.form.assistants.value = '';
@@ -94,6 +97,7 @@ export default class EventForm {
     this.btnCreate.onclick = () => {
       const data = {};
       for (const item in this.form) {
+        if (item == 'id') continue;
         if (item === 'title') continue;
         if (item === 'lab_id') {
           data[item] = this.getLabId(this.form[item].value);
@@ -113,6 +117,7 @@ export default class EventForm {
   setErrors(errors) {
     // console.log(errors);
     for (const element in this.form) {
+      if (element === 'id') continue;
       if (element === 'title') continue;
 
       this.form[element].classList.remove('is-invalid');

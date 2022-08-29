@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lab;
 use App\Models\LabsSchedule;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

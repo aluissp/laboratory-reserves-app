@@ -120,6 +120,8 @@
                 <strong></strong>
               </span>
             </div>
+
+            <input id="id-reserve" type="hidden">
           </form>
         </div>
         <div class="modal-footer">

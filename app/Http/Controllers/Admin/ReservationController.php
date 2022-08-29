@@ -41,7 +41,7 @@ class ReservationController extends Controller
         $data = $request->validated();
         $lab = Lab::firstWhere('id', $data['lab_id']);
         $reservation = auth()->user()->reservations()->create($data);
-        $lab->reservation()->save($reservation);
+        $lab->reservations()->save($reservation);
         return response()->json([
             'message' => "Reserva $reservation->name creada correctamente.",
             'type' => 'success'

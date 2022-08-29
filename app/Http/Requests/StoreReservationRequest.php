@@ -30,14 +30,14 @@ class StoreReservationRequest extends FormRequest
             'description' => ['required', 'string', 'max:255',],
             'assistants' => [
                 'required', 'integer', 'min:1', 'max:1000',
-                new ReserveValidator(null, null, null, $this->lab_id)
+                new ReserveValidator(null, null, null, null, $this->lab_id)
             ],
             'date' => ['required', 'date_format:Y-m-d', 'after_or_equal:today'],
             'start_time' => ['required', 'date_format:H:i', 'before:end_time', new ReserveValidator()],
             'end_time' => ['required', 'date_format:H:i', 'after:start_time', new ReserveValidator()],
             'lab_id' => [
                 'required', 'exists:labs,id',
-                new ReserveValidator($this->date, $this->start_time, $this->end_time)
+                new ReserveValidator($this->id, $this->date, $this->start_time, $this->end_time, null)
             ],
             'color' => 'string|max:20'
         ];
