@@ -101,6 +101,7 @@ export default class EventForm {
         }
         data[item] = this.form[item].value;
       }
+      //console.log(data);
       callback(data);
     };
   }

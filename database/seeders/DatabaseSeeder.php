@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\LabsSchedule;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -38,6 +39,15 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('test1234')
         ]);
 
+        LabsSchedule::create([
+            'name' => 'start_time',
+            'hour' => '07:00:00'
+        ]);
+        LabsSchedule::create([
+            'name' => 'end_time',
+            'hour' => '21:00:00'
+        ]);
+        
         $user->assignRole(config('role.admin'));
         $user2->assignRole('estudiante');
     }

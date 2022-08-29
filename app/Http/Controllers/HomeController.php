@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lab;
+use App\Models\LabsSchedule;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
