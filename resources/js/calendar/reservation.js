@@ -3,18 +3,19 @@ export default class Reservation {
   static async init() {
     try {
       const url = process.env.MIX_URL_SERVE;
-      const response = await axios.get(`${url}/labs/all/filter`);
-      return new Reservation(response.data.response);
+      const labs = await axios.get(`${url}/labs/all/filter`);
+      const reserves = await axios.get(`${url}/reservations`);
+      return new Reservation(labs.data.response, reserves.data.response);
     } catch (error) {
       console.log(error);
     }
   }
 
-  constructor(labs) {
+  constructor(labs, reserves) {
     this.admin = process.env.MIX_ADMIN_ROLE_NAME;
     this.url = process.env.MIX_URL_SERVE;
 
-    this.reserves = [];
+    this.reserves = reserves;
     this.labs = labs;
   }
 

@@ -17,7 +17,11 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reserves = Reservation::get();
+        return response()->json([
+            'response' => $reserves,
+            'message' => 'Datos obtenidos correctamente.'
+        ], 200);
     }
 
     /**

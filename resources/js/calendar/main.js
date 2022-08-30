@@ -7,8 +7,11 @@ document.addEventListener('DOMContentLoaded', async function () {
     return;
   }
 
-  const reserveController = new ReserveController(calendarEl);
   const reservation = await Reservation.init();
+  const reserveController = new ReserveController(
+    calendarEl,
+    reservation.getReserves()
+  );
   reserveController.setReservation(reservation);
   reserveController.getCalendar().render();
 });

@@ -4,10 +4,12 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import esLocale from '@fullcalendar/core/locales/es';
 import interactionPlugin from '@fullcalendar/interaction';
+import { Tooltip } from 'bootstrap';
 
 export default class MyCalendar {
   constructor(calendarEl) {
     this.calendar = new Calendar(calendarEl, {
+      themeSystem: 'bootstrap5',
       plugins: [dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin],
       initialView: 'dayGridMonth',
       locale: esLocale,
@@ -17,10 +19,27 @@ export default class MyCalendar {
         right: 'dayGridMonth,timeGridWeek,listWeek',
       },
       eventTimeFormat: {
-        hour: '2-digit',
+        hour: 'numeric',
         minute: '2-digit',
-        second: '2-digit',
-        hour12: true,
+        meridiem: 'short',
+      },
+      aspectRatio: 1.75,
+      eventDidMount: (info) => {
+        new Tooltip(info.el, {
+          title: info.event.extendedProps.description,
+          placement: 'top',
+          trigger: 'hover',
+          container: 'body',
+        });
+      },
+      dayMaxEventRows: true,
+      views: {
+        timeGrid: {
+          dayMaxEventRows: 4,
+        },
+        dayGridMonth: {
+          dayMaxEventRows: 5,
+        },
       },
     });
 
@@ -31,8 +50,8 @@ export default class MyCalendar {
     return this.calendar;
   }
 
-  setReserveController(reserveController) {
-    this.reserveController = reserveController;
+  reloadEvents(reserves) {
+    reserves.map((reserve) => this.addNewReservationOnCalendar(reserve));
   }
 
   onDateClick(callback) {
@@ -55,7 +74,6 @@ export default class MyCalendar {
       assistants: data.assistants,
       description: data.description,
       editable: true,
-      // display: 'block',
     };
 
     this.calendar.addEvent(reserve);

@@ -54,7 +54,7 @@ Route::middleware(['auth'])->group(function () {
       ->name('labs.filter');
 
     Route::resource('reservations', ReservationController::class)
-      ->except('create');
+      ->except('create', 'show');
   });
 
   Route::get('/my-profile/{user}/edit', [User::class, 'edit'])->name('profile.edit');
