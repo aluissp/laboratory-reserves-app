@@ -91,7 +91,8 @@
               <div class="row">
                 <div class="mb-3 col-6">
                   <label for="role" class="col-form-label">Rol</label>
-                  <input id="role" list="roles"
+                  <input @if (auth()->user()->id == $user->id) disabled @endif
+                    id="role" list="roles"
                     class="form-control @error('role') is-invalid @enderror form-control-user"
                     name="role"
                     value="{{ old('role') ?? $user->roles?->first()->name }}">

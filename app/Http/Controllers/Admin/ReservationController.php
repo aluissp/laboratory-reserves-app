@@ -44,6 +44,7 @@ class ReservationController extends Controller
         $lab->reservations()->save($reservation);
         return response()->json([
             'message' => "Reserva $reservation->name creada correctamente.",
+            'data' => $reservation,
             'type' => 'success'
         ], 200);
     }

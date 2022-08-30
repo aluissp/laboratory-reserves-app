@@ -28,6 +28,11 @@ export default class ReserveController {
         this.eventForm.setErrors(error);
         return;
       }
+
+      // Refrescar tabla
+      console.log(response);
+      const data = response.data;
+      this.eventForm.closeForm(response.type, response.message);
     });
   }
 }

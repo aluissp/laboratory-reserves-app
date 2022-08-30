@@ -30,8 +30,7 @@ export default class Reservation {
     };
     axios(request)
       .then((response) => {
-        console.log(response.data);
-        callback(null, 'ok');
+        callback(null, response.data);
       })
       .catch((error) => {
         callback(error.response.data.errors);

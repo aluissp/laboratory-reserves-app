@@ -1,6 +1,8 @@
+import Alert from './alert.js';
 export default class EventForm {
   constructor() {
     this.form = this.getForm();
+    this.alert = new Alert('calendar-alert');
     this.errorAlerts = this.getErrorAlerts();
     this.modal = new bootstrap.Modal(document.getElementById('event-modal'));
     this.btnCreate = document.getElementById('btn-new-form');
@@ -134,5 +136,10 @@ export default class EventForm {
       this.errorAlerts[error].classList.remove('d-none');
       this.errorAlerts[error].children[0].innerText = errors[error][0];
     }
+  }
+
+  closeForm(type, message) {
+    this.modal.hide();
+    this.alert.show(type, message);
   }
 }
