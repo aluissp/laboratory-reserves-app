@@ -16,6 +16,12 @@ export default class MyCalendar {
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,listWeek',
       },
+      eventTimeFormat: {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+      },
     });
 
     this.reserveController = null;
@@ -35,5 +41,23 @@ export default class MyCalendar {
       info.type = 'new';
       callback(info);
     });
+  }
+
+  addNewReservationOnCalendar(data) {
+    const reserve = {
+      id: data.id,
+      title: data.name,
+      start: new Date(`${data.date} ${data.start_time}`),
+      end: new Date(`${data.date} ${data.start_time}`),
+      start_time: data.start_time,
+      end_time: data.end_time,
+      color: data.color,
+      assistants: data.assistants,
+      description: data.description,
+      editable: true,
+      // display: 'block',
+    };
+
+    this.calendar.addEvent(reserve);
   }
 }

@@ -29,9 +29,7 @@ export default class ReserveController {
         return;
       }
 
-      // Refrescar tabla
-      console.log(response);
-      const data = response.data;
+      this.myCalendar.addNewReservationOnCalendar({ ...response.data });
       this.eventForm.closeForm(response.type, response.message);
     });
   }

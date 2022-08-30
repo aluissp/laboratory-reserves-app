@@ -14,12 +14,16 @@ export default class Reservation {
     this.admin = process.env.MIX_ADMIN_ROLE_NAME;
     this.url = process.env.MIX_URL_SERVE;
 
-    this.reserves = [{}];
+    this.reserves = [];
     this.labs = labs;
   }
 
   getLabs() {
     return [...this.labs];
+  }
+
+  getReserves() {
+    return [...this.reserves];
   }
 
   createNewReservation(data, callback) {
@@ -30,6 +34,8 @@ export default class Reservation {
     };
     axios(request)
       .then((response) => {
+        const { data } = response.data;
+        this.reserves.push(data);
         callback(null, response.data);
       })
       .catch((error) => {

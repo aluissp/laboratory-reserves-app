@@ -99,12 +99,17 @@ export default class EventForm {
     this.btnCreate.onclick = () => {
       const data = {};
       for (const item in this.form) {
-        if (item == 'id') continue;
+        if (item === 'id') continue;
         if (item === 'title') continue;
         if (item === 'lab_id') {
           data[item] = this.getLabId(this.form[item].value);
           continue;
         }
+        if (item === 'start_time' || item === 'end_time') {
+          data[item] = `${this.form[item].value}:00`;
+          continue;
+        }
+
         data[item] = this.form[item].value;
       }
       //console.log(data);

@@ -21,8 +21,8 @@ class ReserveValidator implements Rule
 
         $this->id = $id;
         $this->date = $date;
-        $this->initialHour = $initialHour . ':00';
-        $this->finalHour = $finalHour . ':00';
+        $this->initialHour = $initialHour;
+        $this->finalHour = $finalHour;
 
         $this->lab_id = $lab_id;
     }
@@ -39,13 +39,13 @@ class ReserveValidator implements Rule
         $pass = false;
 
         if ($attribute == 'start_time') {
-            $pass = $value . ':00' >= $this->start_time;
+            $pass = $value >= $this->start_time;
 
             if (!$pass) {
                 $this->message = "La hora inicial debe ser mayor de las $this->start_time horas.";
             }
         } else if ($attribute == 'end_time') {
-            $pass = $value . ':00' <= $this->end_time;
+            $pass = $value <= $this->end_time;
 
             if (!$pass) {
                 $this->message = "La hora final debe ser menor de las $this->end_time horas.";
