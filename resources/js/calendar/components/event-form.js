@@ -230,4 +230,8 @@ export default class EventForm {
     this.modal.hide();
     this.alert.show(type, message);
   }
+
+  showAlert(type, message) {
+    this.alert.show(type, message);
+  }
 }

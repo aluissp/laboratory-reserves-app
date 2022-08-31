@@ -98,4 +98,10 @@ export default class MyCalendar {
       callback(data);
     });
   }
+
+  onEventChange(callback) {
+    this.calendar.on('eventDrop', (info) => {
+      callback(info);
+    });
+  }
 }

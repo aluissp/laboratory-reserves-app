@@ -103,14 +103,24 @@ class ReserveValidator implements Rule
         $pass = false;
 
         $schedule = $this->loadAvailableSchedule($reservations);
+
         foreach ($schedule as $available) {
             $pass = $this->initialHour >= $available['start_time']
                 && $this->finalHour <= $available['end_time'];
             if ($pass) break;
         }
 
+
         if (!is_null($reservation) && !$pass) {
-            $pass = $this->initialHour >= $reservation->start_time && $this->finalHour <= $reservation->end_time;
+            foreach ($reservations as $reserve) {
+                $exists = $this->initialHour >= $reserve->start_time
+                    && $this->finalHour <= $reserve->end_time;
+                if ($exists) {
+                    $isSameHour = $this->initialHour >= $reservation->start_time && $this->finalHour <= $reservation->end_time;
+                    $pass = $reservation->id === $reserve->id && $isSameHour;
+                    break;
+                }
+            }
         }
 
         if (!$pass) {
