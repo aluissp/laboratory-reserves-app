@@ -141,4 +141,25 @@ class ReservationController extends Controller
         $reserves = Reservation::get();
         return view('reservations.index', compact('reserves'));
     }
+
+    public function filter($filter)
+    {
+        if ($filter == 'all') {
+            $data = Reservation::get();
+        } else {
+            $data = Reservation::where('name', 'like', "%$filter%")
+                ->orWhere('date', 'like', "$filter")
+                ->limit(6)
+                ->get();
+        }
+
+        foreach ($data as $reserve) {
+            $reserve->user;
+        }
+
+        return response()->json([
+            'response' => $data,
+            'message' => 'Datos obtenidos correctamente.'
+        ], 200);
+    }
 }

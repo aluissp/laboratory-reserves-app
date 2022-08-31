@@ -35,7 +35,7 @@
           <th scope="col">Acciones</th>
         </tr>
       </thead>
-      <tbody id="labs-list-view">
+      <tbody id="reserves-list-view">
         @foreach ($reserves as $reserve)
           <tr>
             <th scope="row">{{ $reserve->id }}</th>
@@ -50,12 +50,12 @@
                 class="btn btn-secondary mb-0 me-2 p-1 px-2">
                 <i class="fa-solid fa-eye"></i>
               </a>
-              <button form="lab-destroy-{{ $reserve['id'] }}" type="submit"
+              <button form="reserve-destroy-{{ $reserve['id'] }}" type="submit"
                 class="btn btn-danger mb-0 me-2 p-1 px-2">
                 <i class="fa-solid fa-trash"></i>
               </button>
 
-              <form id="lab-destroy-{{ $reserve['id'] }}"
+              <form id="reserve-destroy-{{ $reserve['id'] }}"
                 action="{{ route('reservation.delete', $reserve->id) }}"
                 method="POST">
                 @csrf
@@ -69,4 +69,4 @@
   </div>
 @endsection
 
-{{-- <script src="{{ asset('js/admin/labs.js') }}" defer></script> --}}
+<script src="{{ asset('js/admin/reservations.js') }}" defer></script>

@@ -3,6 +3,7 @@
     "/js/admin/majors.js": "/js/admin/majors.js",
     "/js/admin/labs.js": "/js/admin/labs.js",
     "/js/admin/users.js": "/js/admin/users.js",
+    "/js/admin/reservations.js": "/js/admin/reservations.js",
     "/js/calendar/main.js": "/js/calendar/main.js",
     "/css/app.css": "/css/app.css"
 }

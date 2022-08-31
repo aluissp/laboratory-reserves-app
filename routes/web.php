@@ -53,12 +53,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/labs/{filter}/filter', [LabController::class, 'filter'])
       ->name('labs.filter');
 
-    Route::get('/reservations-all', [ReservationController::class, 'showAll'])
+      Route::get('/reservations-all', [ReservationController::class, 'showAll'])
       ->name('reservation.all');
-  });
+    });
 
-  Route::delete('/reservations/{reservation}/delete', [ReservationController::class, 'delete'])
+    Route::delete('/reservations/{reservation}/delete', [ReservationController::class, 'delete'])
     ->name('reservation.delete');
+
+    Route::get('/reservations/{filter}/filter', [ReservationController::class, 'filter'])
+      ->name('reservations.filter');
 
   Route::resource('reservations', ReservationController::class)
     ->except('create', 'edit');
