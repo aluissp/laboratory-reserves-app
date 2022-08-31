@@ -19,7 +19,11 @@ class ReservationPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        if ($user->hasRole(config('role.admin'))) {
+            return Response::allow();
+        }
+
+        return Response::deny();
     }
 
     /**
@@ -31,7 +35,15 @@ class ReservationPolicy
      */
     public function view(User $user, Reservation $reservation)
     {
-        //
+        if ($user->hasRole(config('role.admin'))) {
+            return Response::allow();
+        }
+
+        if ($user->id === $reservation->user_id) {
+            return Response::allow();
+        }
+
+        return Response::deny();
     }
 
     /**
@@ -62,7 +74,6 @@ class ReservationPolicy
             return Response::allow();
         }
 
-
         return Response::deny();
     }
 
@@ -75,7 +86,15 @@ class ReservationPolicy
      */
     public function delete(User $user, Reservation $reservation)
     {
-        //
+        if ($user->hasRole(config('role.admin'))) {
+            return Response::allow();
+        }
+
+        if ($user->id === $reservation->user_id) {
+            return Response::allow();
+        }
+
+        return Response::deny();
     }
 
     /**

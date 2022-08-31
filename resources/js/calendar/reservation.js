@@ -63,6 +63,24 @@ export default class Reservation {
       });
   }
 
+  deleteReservation(data, callback) {
+    const request = {
+      method: 'delete',
+      url: `${this.url}/reservations/${data.id}`,
+    };
+    axios(request)
+      .then((response) => {
+        const { data } = response.data;
+        this.removeReserve(data.id);
+        callback(null, response.data);
+      })
+      .catch((error) => {
+        if (error.response?.status == 403) callback({ status: 403 });
+
+        callback(error.response?.data.errors);
+      });
+  }
+
   findReserve(id) {
     return this.reserves.findIndex((reserve) => reserve.id == id);
   }

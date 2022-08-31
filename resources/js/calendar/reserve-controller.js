@@ -12,6 +12,7 @@ export default class ReserveController {
 
     this.eventForm.onCreateClick((data) => this.createReserve(data));
     this.eventForm.onEditClick((data) => this.editReserve(data));
+    this.eventForm.onDeleteClick((data) => this.deleteReserve(data));
   }
 
   setReservation(reservation) {
@@ -43,13 +44,24 @@ export default class ReserveController {
     });
   }
 
-  editReserve(data) { 
+  editReserve(data) {
     this.reservation.editReservation(data, (error, response) => {
       if (error) {
         this.eventForm.setErrors(error);
         return;
       }
       this.myCalendar.updateReservationOnCalendar({ ...response.data });
+      this.eventForm.closeForm(response.type, response.message);
+    });
+  }
+
+  deleteReserve(data) {
+    this.reservation.deleteReservation(data, (error, response) => {
+      if (error) {
+        this.eventForm.setErrors(error);
+        return;
+      }
+      this.myCalendar.deleteReservationOnCalendar({ ...response.data });
       this.eventForm.closeForm(response.type, response.message);
     });
   }

@@ -81,7 +81,12 @@ export default class MyCalendar {
   updateReservationOnCalendar(data) {
     const event = this.calendar.getEventById(data.id);
     event.remove();
-    this.addNewReservationOnCalendar(data);  
+    this.addNewReservationOnCalendar(data);
+  }
+
+  deleteReservationOnCalendar(data) {
+    const event = this.calendar.getEventById(data.id);
+    event.remove();
   }
 
   onEventClick(callback) {

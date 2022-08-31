@@ -50,6 +50,9 @@ class ReservationController extends Controller
         $lab = Lab::firstWhere('id', $data['lab_id']);
         $reservation = auth()->user()->reservations()->create($data);
         $lab->reservations()->save($reservation);
+
+        $reservation->user;
+        $reservation->lab;
         return response()->json([
             'message' => "Reserva $reservation->name creada correctamente.",
             'data' => $reservation,
@@ -109,6 +112,13 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        $this->authorize('delete', $reservation);
+        $reservation->delete();
+
+        return response()->json([
+            'message' => "Reserva $reservation->name eliminida correctamente.",
+            'data' => ['id' => $reservation->id],
+            'type' => 'success'
+        ], 200);
     }
 }

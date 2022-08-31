@@ -178,6 +178,16 @@ export default class EventForm {
     };
   }
 
+  onDeleteClick(callback) {
+    this.btnDelete.onclick = () => {
+      const data = {
+        id: this.form.id.value,
+      };
+      // console.log(data);
+      callback(data);
+    };
+  }
+
   getLabId(value) {
     return Number(value.split('-')[0]);
   }
