@@ -18,8 +18,7 @@
         </symbol>
       </svg>
 
-      <div id="calendar-alert"
-        class="alert d-flex align-items-center alert-dismissibled-none"
+      <div id="calendar-alert" class="alert d-flex align-items-center d-none"
         role="alert">
         <svg class="bi flex-shrink-0 me-2" width="24" height="24"
           role="img" aria-label="Info:">

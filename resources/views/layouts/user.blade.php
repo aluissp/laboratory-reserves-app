@@ -61,11 +61,6 @@
                 <div class="dropdown-menu">
                   <a class="dropdown-item d-flex justify-content-between"
                     href="#">
-                    Mostrar reservas
-                    <i class="fa-solid fa-calendar-days mt-1 ms-1"></i>
-                  </a>
-                  <a class="dropdown-item d-flex justify-content-between"
-                    href="#">
                     Mis reservas
                     <i class="fa-solid fa-calendar-day mt-1"></i>
                   </a>

@@ -68,7 +68,9 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
-        //
+        $this->authorize('view', $reservation);
+        $reserve = $reservation;
+        return view('reservations.show', compact('reserve'));
     }
 
     /**
@@ -103,7 +105,6 @@ class ReservationController extends Controller
             'type' => 'success'
         ], 200);
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -120,5 +121,13 @@ class ReservationController extends Controller
             'data' => ['id' => $reservation->id],
             'type' => 'success'
         ], 200);
+    }
+
+    public function showAll()
+    {
+        $this->authorize('viewAny', Reservation::class);
+
+        $reserves = Reservation::get();
+        return view('reservations.index', compact('reserves'));
     }
 }

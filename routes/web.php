@@ -52,10 +52,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/labs/{filter}/filter', [LabController::class, 'filter'])
       ->name('labs.filter');
+
+    Route::get('/reservations-all', [ReservationController::class, 'showAll'])
+      ->name('reservation.all');
   });
-  
+
   Route::resource('reservations', ReservationController::class)
-    ->except('create', 'show', 'edit');
+    ->except('create', 'edit');
 
   Route::get('/my-profile/{user}/edit', [User::class, 'edit'])->name('profile.edit');
 });
