@@ -48,15 +48,15 @@
             <td>
               <a href="{{ route('reservations.show', $reserve->id) }}"
                 class="btn btn-secondary mb-0 me-2 p-1 px-2">
-                <x-icon icon="pencil" />
+                <i class="fa-solid fa-eye"></i>
               </a>
               <button form="lab-destroy-{{ $reserve['id'] }}" type="submit"
                 class="btn btn-danger mb-0 me-2 p-1 px-2">
-                <x-icon icon="trash" />
+                <i class="fa-solid fa-trash"></i>
               </button>
 
               <form id="lab-destroy-{{ $reserve['id'] }}"
-                action="{{ route('labs.destroy', $reserve->id) }}"
+                action="{{ route('reservation.delete', $reserve->id) }}"
                 method="POST">
                 @csrf
                 @method('DELETE')

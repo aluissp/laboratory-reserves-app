@@ -57,6 +57,9 @@ Route::middleware(['auth'])->group(function () {
       ->name('reservation.all');
   });
 
+  Route::delete('/reservations/{reservation}/delete', [ReservationController::class, 'delete'])
+    ->name('reservation.delete');
+
   Route::resource('reservations', ReservationController::class)
     ->except('create', 'edit');
 

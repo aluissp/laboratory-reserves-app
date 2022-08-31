@@ -123,6 +123,17 @@ class ReservationController extends Controller
         ], 200);
     }
 
+    public function delete(Reservation $reservation)
+    {
+        $this->authorize('delete', $reservation);
+        $reservation->delete();
+
+        return redirect()->route('reservation.all')->with('alert', [
+            'message' => "Reserva $reservation->name eliminida correctamente.",
+            'type' => 'success'
+        ]);
+    }
+
     public function showAll()
     {
         $this->authorize('viewAny', Reservation::class);
