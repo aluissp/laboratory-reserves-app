@@ -3,7 +3,6 @@ export default class Alert {
     this.alert = document.getElementById(alertId);
     this.icon = this.alert.children[0].children[0];
     this.message = this.alert.children[1];
-    this.btnClose = this.alert.children[2];
   }
 
   show(type, message) {
@@ -25,6 +24,5 @@ export default class Alert {
     this.alert.classList.remove(`alert-${type}`);
     this.message.innerText = '';
     this.icon.setAttribute('xlink:href', '');
-    this.btnClose.click();
   }
 }

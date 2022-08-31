@@ -19,17 +19,14 @@
       </svg>
 
       <div id="calendar-alert"
-        class="alert d-flex align-items-center alert-dismissible fade show d-none"
+        class="alert d-flex align-items-center alert-dismissibled-none"
         role="alert">
         <svg class="bi flex-shrink-0 me-2" width="24" height="24"
           role="img" aria-label="Info:">
           <use xlink:href="" />
         </svg>
         <div>
-          hola
         </div>
-        <button type="button" class="btn-close" data-bs-dismiss="alert"
-          aria-label="Close"></button>
       </div>
 
       {{-- Calendar --}}
@@ -55,7 +52,8 @@
           <form id="event-form">
             <div class="row">
               <div class='px-2'>
-                <div id="fail-reserve" class="alert alert-danger m-0 d-none"></div>
+                <div id="fail-reserve" class="alert alert-danger m-0 d-none">
+                </div>
               </div>
               <div class="mb-3 col-6">
                 <label class="col-md-4 col-form-label">Nombre</label>
@@ -152,7 +150,8 @@
                 role="alert">
                 <strong></strong>
               </span>
-              <div id='info-reserve' class='alert alert-light mt-4 d-none'></div>
+              <div id='info-reserve' class='alert alert-light mt-4 d-none'>
+              </div>
             </div>
 
             <input id="id-reserve" type="hidden">
