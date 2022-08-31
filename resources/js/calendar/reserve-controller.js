@@ -9,6 +9,8 @@ export default class ReserveController {
     this.myCalendar.onDateClick((info) => this.openEventForm(info));
     this.myCalendar.reloadEvents(reserves);
     this.eventForm.onCreateClick((data) => this.createReserve(data));
+
+    this.myCalendar.onEventClick((data) => this.openEventForm(data));
   }
 
   setReservation(reservation) {
@@ -16,6 +18,11 @@ export default class ReserveController {
   }
 
   openEventForm(info) {
+    if (info.type === 'reload') {
+      info = this.reservation.getReserve(info.id);
+      info.type = 'reload';
+      info.title = 'Editar reserva';
+    }
     this.eventForm.uploadForm(info);
   }
 

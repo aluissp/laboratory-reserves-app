@@ -78,4 +78,14 @@ export default class MyCalendar {
 
     this.calendar.addEvent(reserve);
   }
+
+  onEventClick(callback) {
+    this.calendar.on('eventClick', (info) => {
+      const data = {
+        id: info.event.id,
+        type: 'reload',
+      };
+      callback(data);
+    });
+  }
 }

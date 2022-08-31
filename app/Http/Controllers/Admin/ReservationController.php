@@ -18,6 +18,10 @@ class ReservationController extends Controller
     public function index()
     {
         $reserves = Reservation::get();
+        foreach ($reserves as $reserve) {
+            $reserve->user;
+            $reserve->lab;
+        }
         return response()->json([
             'response' => $reserves,
             'message' => 'Datos obtenidos correctamente.'

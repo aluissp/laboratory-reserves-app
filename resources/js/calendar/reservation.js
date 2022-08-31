@@ -24,7 +24,7 @@ export default class Reservation {
   }
 
   getReserves() {
-    return [...this.reserves];
+    return this.reserves.map((reserve) => ({ ...reserve }));
   }
 
   createNewReservation(data, callback) {
@@ -42,5 +42,14 @@ export default class Reservation {
       .catch((error) => {
         callback(error.response.data.errors);
       });
+  }
+
+  findReserve(id) {
+    return this.reserves.findIndex((reserve) => reserve.id == id);
+  }
+
+  getReserve(id) {
+    const index = this.findReserve(id);
+    return { ...this.reserves[index] };
   }
 }
