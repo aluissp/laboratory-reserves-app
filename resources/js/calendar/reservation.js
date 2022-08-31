@@ -44,6 +44,25 @@ export default class Reservation {
       });
   }
 
+  editReservation(data, callback) {
+    const request = {
+      method: 'put',
+      url: `${this.url}/reservations/${data.id}`,
+      data,
+    };
+    axios(request)
+      .then((response) => {
+        const { data } = response.data;
+        this.editReserve(data.id, data);
+        callback(null, response.data);
+      })
+      .catch((error) => {
+        if (error.response?.status == 403) callback({ status: 403 });
+
+        callback(error.response?.data.errors);
+      });
+  }
+
   findReserve(id) {
     return this.reserves.findIndex((reserve) => reserve.id == id);
   }
@@ -51,5 +70,15 @@ export default class Reservation {
   getReserve(id) {
     const index = this.findReserve(id);
     return { ...this.reserves[index] };
+  }
+
+  removeReserve(id) {
+    const index = this.findReserve(id);
+    this.reserves.splice(index, 1);
+  }
+
+  editReserve(id, values) {
+    const index = this.findReserve(id);
+    Object.assign(this.reserves[index], values);
   }
 }

@@ -86,9 +86,19 @@ class ReservationController extends Controller
      * @param  \App\Models\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reservation $reservation)
+    public function update(StoreReservationRequest $request, Reservation $reservation)
     {
-        //
+        $this->authorize('update', $reservation);
+        $data = $request->validated();
+        $lab = Lab::firstWhere('id', $data['lab_id']);
+        $reservation->update($data);
+        $lab->reservations()->save($reservation);
+
+        return response()->json([
+            'message' => "Reserva $reservation->name actualizada correctamente.",
+            'data' => $reservation,
+            'type' => 'success'
+        ], 200);
     }
 
     /**

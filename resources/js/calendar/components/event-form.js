@@ -154,6 +154,30 @@ export default class EventForm {
     };
   }
 
+  onEditClick(callback) {
+    this.btnEdit.onclick = () => {
+      const data = {};
+      for (const item in this.form) {
+        if (item === 'title') continue;
+        if (item === 'error') continue;
+        if (item === 'info') continue;
+        if (item === 'lab_id') {
+          data[item] = this.getLabId(this.form[item].value);
+          continue;
+        }
+        if (item === 'start_time' || item === 'end_time') {
+          let split = this.form[item].value.split(':');
+          data[item] = `${this.form[item].value}${split[2] ? '' : ':00'}`;
+          continue;
+        }
+
+        data[item] = this.form[item].value;
+      }
+      // console.log(data);
+      callback(data);
+    };
+  }
+
   getLabId(value) {
     return Number(value.split('-')[0]);
   }
@@ -164,7 +188,10 @@ export default class EventForm {
       if (element === 'id') continue;
       if (element === 'title') continue;
       if (element === 'info') continue;
-      if (element === 'error') continue;
+      if (element === 'error') {
+        this.form[element].classList.add('d-none');
+        continue;
+      }
 
       this.form[element].classList.remove('is-invalid');
       if (element === 'description') continue;
@@ -173,6 +200,13 @@ export default class EventForm {
     }
 
     for (const error in errors) {
+      if (errors[error] === 403) {
+        this.form.error.classList.remove('d-none');
+        this.form.error.innerText =
+          'No estas autorizado para modificar o eliminar esta reserva.';
+        continue;
+      }
+
       this.form[error].classList.add('is-invalid');
 
       if (error === 'description') continue;

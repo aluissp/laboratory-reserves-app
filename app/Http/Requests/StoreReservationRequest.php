@@ -15,7 +15,7 @@ class StoreReservationRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->hasRole(config('role.admin'));
+        return true;
     }
 
     /**

@@ -129,7 +129,7 @@
                   {{ Auth::user()->name }} {{ auth()->user()->surname }}
                 </a>
 
-                <di v class="dropdown-menu dropdown-menu-end"
+                <div class="dropdown-menu dropdown-menu-end"
                   aria-labelledby="userDropdown">
 
                   <a class="dropdown-item d-flex justify-content-between"
@@ -149,7 +149,7 @@
                     method="POST" class="d-none">
                     @csrf
                   </form>
-                </di>
+                </div>
               </li>
             @endguest
           </ul>

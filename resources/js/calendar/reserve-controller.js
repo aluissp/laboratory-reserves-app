@@ -8,9 +8,10 @@ export default class ReserveController {
     this.myCalendar = new MyCalendar(calendarEl);
     this.myCalendar.onDateClick((info) => this.openEventForm(info));
     this.myCalendar.reloadEvents(reserves);
-    this.eventForm.onCreateClick((data) => this.createReserve(data));
-
     this.myCalendar.onEventClick((data) => this.openEventForm(data));
+
+    this.eventForm.onCreateClick((data) => this.createReserve(data));
+    this.eventForm.onEditClick((data) => this.editReserve(data));
   }
 
   setReservation(reservation) {
@@ -38,6 +39,17 @@ export default class ReserveController {
       }
 
       this.myCalendar.addNewReservationOnCalendar({ ...response.data });
+      this.eventForm.closeForm(response.type, response.message);
+    });
+  }
+
+  editReserve(data) { 
+    this.reservation.editReservation(data, (error, response) => {
+      if (error) {
+        this.eventForm.setErrors(error);
+        return;
+      }
+      this.myCalendar.updateReservationOnCalendar({ ...response.data });
       this.eventForm.closeForm(response.type, response.message);
     });
   }

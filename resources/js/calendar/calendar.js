@@ -4,7 +4,6 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import esLocale from '@fullcalendar/core/locales/es';
 import interactionPlugin from '@fullcalendar/interaction';
-import { Tooltip } from 'bootstrap';
 
 export default class MyCalendar {
   constructor(calendarEl) {
@@ -25,7 +24,7 @@ export default class MyCalendar {
       },
       aspectRatio: 1.75,
       eventDidMount: (info) => {
-        new Tooltip(info.el, {
+        new bootstrap.Tooltip(info.el, {
           title: info.event.extendedProps.description,
           placement: 'top',
           trigger: 'hover',
@@ -77,6 +76,12 @@ export default class MyCalendar {
     };
 
     this.calendar.addEvent(reserve);
+  }
+
+  updateReservationOnCalendar(data) {
+    const event = this.calendar.getEventById(data.id);
+    event.remove();
+    this.addNewReservationOnCalendar(data);  
   }
 
   onEventClick(callback) {
