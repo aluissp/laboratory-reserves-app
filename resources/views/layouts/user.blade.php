@@ -60,7 +60,7 @@
                   aria-expanded="false">Reservas</a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item d-flex justify-content-between"
-                    href="#">
+                    href="{{ route('my-reserve.index') }}">
                     Mis reservas
                     <i class="fa-solid fa-calendar-day mt-1"></i>
                   </a>

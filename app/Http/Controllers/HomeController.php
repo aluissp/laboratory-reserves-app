@@ -25,11 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $labs = Lab::get();
         if (auth()->user()->hasRole(config('role.admin'))) {
-            $labs = Lab::get();
             return view('home.admin', compact('labs'));
         } else {
-            return view('home.user');
+            return view('home.user', compact('labs'));
         }
     }
 }
