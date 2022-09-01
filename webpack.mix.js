@@ -17,6 +17,7 @@ mix.js("resources/js/app.js", "public/js")
     .js("resources/js/admin/users.js", "public/js/admin")
     .js("resources/js/admin/reservations.js", "public/js/admin")
     .js("resources/js/calendar/main.js", "public/js/calendar")
+    .js("resources/js/guest-calendar/main.js", "public/js/guest-calendar")
     .sass("resources/sass/app.scss", "public/css")
     .css("resources/css/app.css", "public/css")
     .sourceMaps();

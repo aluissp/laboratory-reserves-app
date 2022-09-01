@@ -5,5 +5,6 @@
     "/js/admin/users.js": "/js/admin/users.js",
     "/js/admin/reservations.js": "/js/admin/reservations.js",
     "/js/calendar/main.js": "/js/calendar/main.js",
+    "/js/guest-calendar/main.js": "/js/guest-calendar/main.js",
     "/css/app.css": "/css/app.css"
 }

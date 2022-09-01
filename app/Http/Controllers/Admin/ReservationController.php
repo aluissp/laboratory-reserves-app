@@ -162,4 +162,17 @@ class ReservationController extends Controller
             'message' => 'Datos obtenidos correctamente.'
         ], 200);
     }
+
+    public function guestShow()
+    {
+        $reserves = Reservation::get();
+        foreach ($reserves as $reserve) {
+            $reserve->user;
+            $reserve->lab;
+        }
+        return response()->json([
+            'response' => $reserves,
+            'message' => 'Datos obtenidos correctamente.'
+        ], 200);
+    }
 }

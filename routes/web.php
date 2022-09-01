@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController as Admin;
 use App\Http\Controllers\User\UserController as User;
 use App\Http\Controllers\Admin\RoleController;
+use App\Models\Lab;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +23,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn () => auth()->check() ? redirect()->route('home') : view('welcome'));
+Route::get('/', function () {
+  $labs = Lab::get();
+  return  auth()->check() ? redirect()->route('home') : view('welcome', compact('labs'));
+});
 
 Auth::routes();
 
@@ -72,3 +76,5 @@ Route::middleware(['auth'])->group(function () {
 
   Route::get('/my-profile/{user}/edit', [User::class, 'edit'])->name('profile.edit');
 });
+
+Route::get('guest-show', [ReservationController::class, 'guestShow'])->name('guest.show');
