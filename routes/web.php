@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\LabController;
 use App\Http\Controllers\Admin\MajorController;
 use App\Http\Controllers\Admin\ReservationController;
+use App\Http\Controllers\User\ReservationController as UserReservation;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController as Admin;
 use App\Http\Controllers\User\UserController as User;
@@ -53,18 +54,21 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/labs/{filter}/filter', [LabController::class, 'filter'])
       ->name('labs.filter');
 
-      Route::get('/reservations-all', [ReservationController::class, 'showAll'])
+    Route::get('/reservations-all', [ReservationController::class, 'showAll'])
       ->name('reservation.all');
-    });
+  });
 
-    Route::delete('/reservations/{reservation}/delete', [ReservationController::class, 'delete'])
+  Route::delete('/reservations/{reservation}/delete', [ReservationController::class, 'delete'])
     ->name('reservation.delete');
 
-    Route::get('/reservations/{filter}/filter', [ReservationController::class, 'filter'])
-      ->name('reservations.filter');
+  Route::get('/reservations/{filter}/filter', [ReservationController::class, 'filter'])
+    ->name('reservations.filter');
 
   Route::resource('reservations', ReservationController::class)
     ->except('create', 'edit');
+
+  Route::resource('my-reserve', UserReservation::class)
+    ->except('create', 'store', 'edit', 'update');
 
   Route::get('/my-profile/{user}/edit', [User::class, 'edit'])->name('profile.edit');
 });

@@ -36,7 +36,7 @@
         </tr>
       </thead>
       <tbody id="reserves-list-view">
-        @foreach ($reserves as $reserve)
+        @forelse  ($reserves as $reserve)
           <tr>
             <th scope="row">{{ $reserve->id }}</th>
             <td>{{ $reserve->name }} </td>
@@ -63,7 +63,11 @@
               </form>
             </td>
           </tr>
-        @endforeach
+        @empty
+          <tr>
+            <th colspan="7">No se han encotrado registros.</th>
+          </tr>
+        @endforelse
       </tbody>
     </table>
   </div>
